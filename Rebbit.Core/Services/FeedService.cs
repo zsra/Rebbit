@@ -24,15 +24,15 @@ namespace Rebbit.Core.Services
             _groupService = groupService;
         }
 
-        public async ValueTask<IEnumerable<Group>> GetFollowedGroups(int userId)
+        public async ValueTask<IDictionary<int, string>> GetFollowedGroups(int userId)
         {
-            return (await _userRepository.GetByIdAsync(userId)).FollowedGroups;
+            return (await _userRepository.GetByIdAsync(userId)).FollowedGroups.ToDictionary( g => g.Id, g=> g.Name );
         }
 
         public async ValueTask<IEnumerable<Post>> GetPersonalFeed(int userId)
         {
             List<Post> result = new List<Post>();
-            IEnumerable<Group> groups = await GetFollowedGroups(userId);
+            IEnumerable<Group> groups = (await _userRepository.GetByIdAsync(userId)).FollowedGroups;
             
             foreach (Group group in groups)
                 result.AddRange(await _groupService.GetPopularPosts(group.Id));

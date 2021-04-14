@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Rebbit.Web.Controllers
 {
-    public class PostController
+    public class AccountController
     {
     }
 }

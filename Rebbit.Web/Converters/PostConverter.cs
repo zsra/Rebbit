@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Rebbit.Web.Controllers
+namespace Rebbit.Web.Converters
 {
-    public class PostController
+    public class PostConverter
     {
     }
 }
